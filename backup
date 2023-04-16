@@ -1,0 +1,33 @@
+void	search(t_data *utils, int x, int y)
+{
+	int i;
+	int j;
+
+	i = 0 ;
+	j = 0;
+	while(i != y)
+	{
+		while(j != x)
+		{
+			if (utils->map[i][j] != 'P' )
+				j++;
+			if (utils->map[i][j] != 'E')
+				j++;
+			if (utils->map[i][j] != 'C')
+				j++;
+			if (utils->map[i][j] != '1' )
+				j++;
+			if (utils->map[i][j] != '0')
+				j++;
+			else if
+			{
+					ft_printf("mqwda lqadiya");
+					exit(1);
+			}
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+
+}
