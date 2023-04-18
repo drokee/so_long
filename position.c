@@ -9,7 +9,7 @@
 /*   Updated: 2023/04/14 04:37:38 by amahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "solong.h"
+#include "so_long.h"
 
 t_pos	playerpos(t_data *utils)
 {

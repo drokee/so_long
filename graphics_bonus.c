@@ -15,14 +15,14 @@ void	imgmanager(t_data *utils)
 {
 	utils->mlx = mlx_init();
 	utils->gamewin = mlx_new_window(utils->mlx, utils->x * 50, \
-	utils->y * 50, "cheb l3arbi wah ya lyam wah!");
-	utils->l3arbi = "./cheb l3arbi/supermario.xpm";
-	utils->coin = "./cheb l3arbi/coin.xpm";
-	utils->wall = "./cheb l3arbi/wall.xpm";
-	utils->floor = "./cheb l3arbi/sky.xpm";
-	utils->door = "./cheb l3arbi/door.xpm";
-	utils->l3arbiimg = mlx_xpm_file_to_image(utils->mlx, \
-	utils->l3arbi, &utils->width, &utils->height);
+	utils->y * 50, "So long");
+	utils->mario = "./textures/supermario.xpm";
+	utils->coin = "./textures/coin.xpm";
+	utils->wall = "./textures/wall.xpm";
+	utils->floor = "./textures/sky.xpm";
+	utils->door = "./textures/door.xpm";
+	utils->marioimg = mlx_xpm_file_to_image(utils->mlx, \
+	utils->mario, &utils->width, &utils->height);
 	utils->coinimg = mlx_xpm_file_to_image(utils->mlx, utils->coin, \
 	&utils->width, &utils->height);
 	utils->wallimg = mlx_xpm_file_to_image(utils->mlx, utils->wall, \
@@ -31,10 +31,24 @@ void	imgmanager(t_data *utils)
 	&utils->width, &utils->height);
 	utils->doorimg = mlx_xpm_file_to_image(utils->mlx, utils->door, \
 	&utils->width, &utils->height);
+	errorfile(utils);
 	mlx_hook(utils->gamewin, 2, 0, movements, utils);
 	mlx_hook(utils->gamewin, 17, 0, quit, utils);
 	putdesign(utils);
 	mlx_loop(utils->mlx);
+}
+
+void	destroyimg(t_data *utils)
+{
+	if (utils->gamewin)
+	{
+		mlx_destroy_image(utils->mlx, utils->floorimg);
+		mlx_destroy_image(utils->mlx, utils->marioimg);
+		mlx_destroy_image(utils->mlx, utils->coinimg);
+		mlx_destroy_image(utils->mlx, utils->wallimg);
+		mlx_destroy_image(utils->mlx, utils->doorimg);
+		mlx_destroy_window(utils->mlx, utils->gamewin);
+	}
 }
 
 void	putdesign(t_data *utils)
@@ -56,7 +70,7 @@ void	putdesign(t_data *utils)
 		x = 0;
 	}
 	moves = ft_itoa(utils->moves);
-	mlx_string_put(utils->mlx, utils->gamewin, 0, 50, 000000, moves);
+	mlx_string_put(utils->mlx, utils->gamewin, 0, 50, 120500, moves);
 	free (moves);
 }
 
@@ -78,5 +92,5 @@ void	putdesign2(t_data *utils, int y, int x)
 			utils->coinimg, x * 50, y * 50);
 	if (utils->map[y][x] == 'P')
 		mlx_put_image_to_window(utils->mlx, utils->gamewin, \
-				utils->l3arbiimg, x * 50, y * 50);
+				utils->marioimg, x * 50, y * 50);
 }

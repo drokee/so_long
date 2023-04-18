@@ -16,8 +16,9 @@ void	movescounter(t_data *utils)
 	utils->moves++;
 }
 
-int	quit(void)
+int	quit(t_data *utils)
 {
+	destroyimg(utils);
 	exit(0);
 }
 
@@ -26,11 +27,12 @@ void	checknl(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		if (str[i] == '\n' && str[i + 1] == '\n')
 		{
 			ft_printf("Error\n");
+			free(str);
 			exit(1);
 		}
 		i++;
@@ -48,19 +50,20 @@ void	hilper(t_data *utils)
 	{
 		while (i < utils->x)
 		{
-			if (utils->map[0][i] != '1')
-			{
-				ft_printf("Error\n");
-				exit (1);
-			}
-			if (utils->map[utils->y - 1][i] != '1')
-			{
-				ft_printf("Error\n");
-				exit (1);
-			}
+			hilper2(utils, i);
 			i++;
 		}
 		j++;
 		i = 0;
+	}
+}
+
+void	dupchar(t_data *utils)
+{
+	if (utils->p != 1 || utils->e != 1 || utils->c < 1)
+	{
+		ft_printf("Error\n");
+		free_doublearr(utils->map, utils);
+		exit(1);
 	}
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solong.c                                           :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amahdiou <amahdiou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,7 +9,7 @@
 /*   Updated: 2023/04/08 03:36:01 by amahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "solong.h"
+#include "so_long.h"
 
 void	mapreader(t_data *utils, int fd)
 {
@@ -23,6 +23,7 @@ void	mapreader(t_data *utils, int fd)
 	if (!container || container[0] == '\n')
 	{
 		ft_printf("Error\n");
+		free(container);
 		exit(1);
 	}
 	while (container)
@@ -43,15 +44,19 @@ int	main(int ac, char **av)
 	int		fd1;
 	t_data	utils;
 
-	if (ac == 1)
+	if (ac != 2)
 	{
 		ft_printf("Error\n");
 		exit(1);
 	}
 	checkfile(av[1]);
 	fd1 = open(av[1], O_RDONLY);
+	if (fd1 == -1)
+		exit(1);
 	mapreader(&utils, fd1);
 	fd = open(av[1], O_RDONLY);
+	if (fd == -1)
+		exit(1);
 	count(&utils.y, &utils.x, fd);
 	search(&utils, utils.y, utils.x);
 	playerpos(&utils);
@@ -60,3 +65,4 @@ int	main(int ac, char **av)
 	pathchecker(&utils, utils.y, utils.x);
 	imgmanager(&utils);
 }
+

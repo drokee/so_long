@@ -9,7 +9,7 @@
 /*   Updated: 2023/04/14 02:28:23 by amahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"solong.h"
+#include"so_long.h"
 
 int	movements(int key, t_data *utils)
 {
@@ -28,7 +28,11 @@ int	movements(int key, t_data *utils)
 	if (key == 0)
 		left(utils, &playerloc, &modifier, here);
 	if (key == 53)
+	{
+		free_doublearr(utils->map, utils);
+		destroyimg(utils);
 		exit(0);
+	}
 	return (0);
 }
 
@@ -55,6 +59,8 @@ void	up(t_data *utils, t_pos *playerloc, t_pos *modifier, char here)
 	if (here == 'E' && utils->c == 0)
 	{
 		ft_printf("WA RAK RB7TI\n");
+		free_doublearr(utils->map, utils);
+		destroyimg(utils);
 		exit(0);
 	}
 }
@@ -82,6 +88,8 @@ void	down(t_data *utils, t_pos *playerloc, t_pos *modifier, char here)
 	if (here == 'E' && utils->c == 0)
 	{
 		ft_printf("WA RAK RB7TI\n");
+		free_doublearr(utils->map, utils);
+		destroyimg(utils);
 		exit(0);
 	}
 }
@@ -109,6 +117,8 @@ void	left(t_data *utils, t_pos *playerloc, t_pos *modifier, char here)
 	if (here == 'E' && utils->c == 0)
 	{
 		ft_printf("WA RAK RB7TI\n");
+		free_doublearr(utils->map, utils);
+		destroyimg(utils);
 		exit(0);
 	}
 }
@@ -136,6 +146,8 @@ void	right(t_data *utils, t_pos *playerloc, t_pos *modifier, char here)
 	if (here == 'E' && utils->c == 0)
 	{
 		ft_printf("WA RAK RB7TI\n");
+		free_doublearr(utils->map, utils);
+		destroyimg(utils);
 		exit(0);
 	}
 }

@@ -9,7 +9,6 @@
 /*   Updated: 2023/04/09 22:35:13 by amahdiou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "solong_bonus.h"
 
 void	count(int *y, int *x, int fd)
@@ -34,27 +33,25 @@ void	wallcheck(t_data *utils)
 	int	j;
 	int	i;
 
-	j = 0;
-	i = 0;
-	while (j < utils->y)
+	j = -1;
+	i = -1;
+	while (++j < utils->y)
 	{
 		if (utils->map[j][0] != '1')
 		{
 			ft_printf("Error");
+			free_doublearr(utils->map, utils);
 			exit(1);
 		}
 		if (utils->map[j][utils->x - 1] != '1')
 		{
 			ft_printf("Error");
+			free_doublearr(utils->map, utils);
 			exit(1);
 		}
-		while (i < utils->x)
-		{
+		while (++i < utils->x)
 			hilper(utils);
-			i++;
-		}
 		i = 0;
-		j++;
 	}
 }
 
@@ -95,6 +92,8 @@ void	search(t_data *utils, int y, int x)
 			&& utils->map[i][j] != 'C' && utils->map[i][j] != '1'\
 			&& utils->map[i][j] != '0')
 			{
+				free_doublearr(utils->map, utils);
+				ft_printf("Error\n");
 				exit(1);
 			}
 			j++;
@@ -129,6 +128,5 @@ void	countchar(t_data *utils, int y, int x)
 		i++;
 		j = 0;
 	}
-	if (utils->p == 0 || utils->e == 0 || utils->c == 0)
-		exit(1);
+	dupchar(utils);
 }

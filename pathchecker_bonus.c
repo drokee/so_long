@@ -67,6 +67,7 @@ void	coincheck(t_data *utils, int y, int x)
 			if (utils->mapc[i][j] == 'C')
 			{
 				ft_printf("invalid path");
+				free_doublearr(utils->map, utils);
 				exit(1);
 			}
 			j++;
@@ -93,6 +94,7 @@ void	pathvalid(t_data *utils, int y, int x)
 				&& utils->mapc[i][j + 1] != 'P' && utils->mapc[i][j - 1] != 'P')
 				{
 					ft_printf("invalidpath");
+					free_doublearr(utils->map, utils);
 					exit(1);
 				}
 			}
